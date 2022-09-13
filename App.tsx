@@ -7,7 +7,9 @@ import { theme } from './src/theme';
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Background />
+      <Background>
+        
+      </Background>
     </ThemeProvider>
   );
 }
