@@ -1,5 +1,5 @@
-export const THEME = {
-  COLORS: {
+export const theme = {
+  colors: {
     BACKGROUND_900: '#121214',
     BACKGROUND_800: '#18181B',
 
@@ -19,14 +19,14 @@ export const THEME = {
     OVERLAY: 'rgba(0,0,0,0.6)',
   },
 
-  FONT_FAMILY: {
+  fontFamily: {
     REGULAR: 'Inter_400Regular',
     SEMI_BOLD: 'Inter_600SemiBold',
     BOLD: 'Inter_700Bold',
     BLACK: 'Inter_900Black'
   },
 
-  FONT_SIZE: {
+  fontSize: {
     SM: 14,
     MD: 16,
     LG: 24
