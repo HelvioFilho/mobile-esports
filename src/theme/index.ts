@@ -27,8 +27,8 @@ export const theme = {
   },
 
   fontSize: {
-    SM: 14,
-    MD: 16,
-    LG: 24
+    SM: 12,
+    MD: 14,
+    LG: 22
   }
 };
