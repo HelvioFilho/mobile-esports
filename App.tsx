@@ -1,19 +1,18 @@
-import React from 'react';
-import { StatusBar } from 'react-native';
-import { ThemeProvider } from 'styled-components/native';
 import {
-  useFonts,
   Inter_400Regular,
   Inter_600SemiBold,
   Inter_700Bold,
-  Inter_900Black
+  Inter_900Black, useFonts
 } from '@expo-google-fonts/inter';
+import React from 'react';
+import { StatusBar } from 'react-native';
+import { ThemeProvider } from 'styled-components/native';
 
 import { Background } from './src/components/Background';
 
-import { theme } from './src/theme';
-import { Home } from './src/screens/Home';
 import { Loading } from './src/components/Loading';
+import { Routes } from './src/routes';
+import { theme } from './src/theme';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -30,7 +29,7 @@ export default function App() {
           backgroundColor="transparent"
           translucent
         />
-        { fontsLoaded ? <Home /> : <Loading size={36}/>}
+        {fontsLoaded ? <Routes /> : <Loading size={36} />}
       </Background>
     </ThemeProvider>
   );
