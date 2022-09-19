@@ -10,19 +10,29 @@ import { useTheme } from 'styled-components';
 import { FlatList, View } from 'react-native';
 import { Heading } from '../../components/Heading';
 import { DuoCard, DuosCardProps } from '../../components/DuoCard';
+import { DuoMatch } from '../../components/DuoMatch';
 
 interface GameProps{
   id: string;
   title: string;
   bannerUrl: string;
+  discord: string;
 }
 
 export function Game() {
   const [duos, setDuos] = useState<DuosCardProps[]>([]);
+  const [discordDuoSelected, setDiscordDuoSelected] = useState("");
   const theme = useTheme();
   const {params} = useRoute();
   const { goBack } = useNavigation();
   const game = params as GameProps;
+
+  async function getDiscordUser(asdId: string){
+    fetch(`http://192.168.100.107:3333/ads/${asdId}/discord`)
+    .then( response => response.json())
+    .then( data => setDiscordDuoSelected(data.discord))
+    .catch( e => console.log(e));
+  }  
 
   useEffect(() =>{
     fetch(`http://192.168.100.107:3333/games/${game.id}/ads`)
@@ -56,6 +66,7 @@ export function Game() {
         <Heading 
           title={game.title}
           subtitle="Conecte-se e comece a jogar!"
+          style={{padding: 32}}
         />
         <ContainerGame 
           data={duos}
@@ -63,7 +74,7 @@ export function Game() {
           renderItem={({item}) => (
             <DuoCard 
               data={item}
-              onConnect={() => {}}
+              onConnect={() => getDiscordUser(item.id)}
             />
           )}
           horizontal
@@ -74,6 +85,12 @@ export function Game() {
               Ainda não há anúncios publicados para esse jogo!
             </Empty>
           )}
+        />
+        <DuoMatch
+          animationType="fade"
+          visible={discordDuoSelected.length > 0}
+          discord={discordDuoSelected}
+          onClose={() => setDiscordDuoSelected("")}
         />
       </Container>
     </Background>
